@@ -52,6 +52,7 @@ class LibraryManager:
         books = self.library.list_books()
         if not books:
             print("Library is empty")
+            return
 
         for book in books:
             print(f"Title: {book.title}, Author: {book.author}, Year: {book.year}")
