@@ -1,6 +1,5 @@
 import logging
 from abc import ABC, abstractmethod
-from colorama import Fore
 
 # Setup logger
 logger = logging.getLogger()

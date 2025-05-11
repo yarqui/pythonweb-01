@@ -1,5 +1,6 @@
 from typing import List
 from abc import ABC, abstractmethod
+from factories import logger
 
 
 class Book:
@@ -44,6 +45,7 @@ class LibraryManager:
     def add_book(self, title: str, author: str, year: str) -> None:
         book = Book(title, author, year)
         self.library.add_book(book)
+        logger.info("Book added: %s by %s (%s)", title, author, year)
 
     def remove_book(self, title: str) -> None:
         self.library.remove_book(title)
@@ -51,11 +53,16 @@ class LibraryManager:
     def show_books(self) -> None:
         books = self.library.list_books()
         if not books:
-            print("Library is empty")
+            logger.info("Library is empty")
             return
 
         for book in books:
-            print(f"Title: {book.title}, Author: {book.author}, Year: {book.year}")
+            logger.info(
+                "Title: %s, Author: %s, Year: %s",
+                book.title,
+                book.author,
+                book.year,
+            )
 
 
 def main():
@@ -79,7 +86,7 @@ def main():
             case "exit":
                 break
             case _:
-                print("Invalid command. Please try again.")
+                logger.info("Invalid command. Please try again.")
 
 
 if __name__ == "__main__":
